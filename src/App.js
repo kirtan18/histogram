@@ -8,6 +8,7 @@ const URL = "https://www.terriblytinytales.com/test.txt";
 
 
 export const App = () => {
+  
   const [state, setstate] = useState({
     options: {
       chart: {
@@ -25,7 +26,7 @@ export const App = () => {
     ]
   });
 
-  var arr;
+  
    function count_occures(value, ans) {
      for (let i = 0; i < value.length; i++) {
        if (ans[value[i]] === undefined) {
@@ -40,11 +41,12 @@ export const App = () => {
       const response = await axios(URL);
       const body = await JSON.stringify(response);
       const value = body.split(" ");
-      let ans = {};
+      const ans = {};
       count_occures(value, ans);
-      arr = Object.keys(ans).sort(function (a, b) { return ans[b] - ans[a]});
+      const arr = Object.keys(ans).sort(function (a, b) { return ans[b] - ans[a]});
       // console.log(arr);
-        
+      
+     const output = [];
       for (let i = 0; i < 20; i++){
        const obj = {};
        obj.key = arr[i];
@@ -58,16 +60,7 @@ export const App = () => {
     const onClickHandler = () => {
       getData();
     };
-    
-    var labels = [];
-    var data = [];
-    var options = { fillColor: '#FFFFFF', strokeColor: '#0000FF' };
-    
-    for (let i = 0; i < 20; i++){
-      labels.push(arr[i]);
-      data.push(output[arr[i]]);
-    }
-    
+     
     return (
       <div>
         <button onClick={onClickHandler}>Click me for a Data</button>
